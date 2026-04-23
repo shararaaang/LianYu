@@ -93,3 +93,73 @@ Use 'FromBase58' to decode it.
 We have cracked it : '!#th3h00d' - This is the FTP Password.
 
 ## Step 3: FTP Login
+
+Now we have the username and password
+Username - vigilante
+Password - !#th3h00d
+
+<img width="935" height="236" alt="Screenshot 2026-04-23 132944" src="https://github.com/user-attachments/assets/9fc25100-e75c-49d6-ac0b-79e13593b169" />
+
+Once success to login ftp, use 'ls' command to look for image files in the server.
+If find any files there, download all the files using this command
+```
+mget *
+```
+
+<img width="907" height="592" alt="Screenshot 2026-04-23 133129" src="https://github.com/user-attachments/assets/bee20165-9285-448f-a44b-e40046632f65" />
+
+<img width="984" height="678" alt="image" src="https://github.com/user-attachments/assets/c8786cbf-15e4-4f3a-8b15-60b802c4707c" />
+
+<img width="445" height="704" alt="image" src="https://github.com/user-attachments/assets/6c6d3a0b-7e36-4e8e-b6d2-4d015ca090a8" />
+
+<img width="541" height="480" alt="image" src="https://github.com/user-attachments/assets/236dfb07-e24c-4e4c-ac9b-23bcaab40099" />
+
+I checked the image use hex editor. The first 8 bit of the Leave_me_alone.png is not correct according to png format.
+
+<img width="958" height="703" alt="image" src="https://github.com/user-attachments/assets/2c670e4a-7379-4c72-a58e-9bec42832f75" />
+
+<img width="846" height="597" alt="image" src="https://github.com/user-attachments/assets/e770e9df-02c5-4e79-b4ab-a46fa705824a" />
+
+After open the photo, the password is given for steghide.
+Try to enter the password when use steghide command on the png file.
+```
+steghide extract -sf aa.jpg
+```
+
+<img width="932" height="800" alt="Screenshot 2026-04-23 140041" src="https://github.com/user-attachments/assets/85a4dc90-41e6-46c7-b43b-f21cc1aa8afb" />
+
+Now using the password 'password' we got earlier successfully extracted the .jpg file to a ss.zip file. 
+We found a  a 'passwd.txt' and a 'shado file' unzipping the ss.zip file. 
+
+Now cat 'shado' file and you get a password : 'M3tahuman' -- (ssh password)
+
+Now as we have got the ssh password we can now login -- 
+User - slade 
+password - M3tahuman
+```
+ssh slade@10.49.165.124
+```
+<img width="970" height="869" alt="Screenshot 2026-04-23 140148" src="https://github.com/user-attachments/assets/c85ba352-c52b-4e12-9733-723221be117f" />
+
+Once enter ssh, read the file user.txt
+
+<img width="947" height="865" alt="Screenshot 2026-04-23 140534" src="https://github.com/user-attachments/assets/0a7fef3c-0bfa-4063-b26d-81e78eb43d08" />
+
+Then run
+```
+sudo -l
+```
+then run, to access root
+```
+sudo pkexec su
+```
+
+Once run the command, type 'ls' and it will show root.txt file. Read the file using cat command
+
+```
+cat root.txt
+```
+
+And mission accomplished.
+
+<img width="943" height="877" alt="Screenshot 2026-04-23 140550" src="https://github.com/user-attachments/assets/f1a082c5-46c2-48c4-8b4c-0ec7a35a728d" />
